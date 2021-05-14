@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use \Symfony\Component\HttpFoundation\JsonResponse;
 
 class RecipesController extends AbstractController
 
@@ -15,7 +16,8 @@ class RecipesController extends AbstractController
     /**
      * @Route("/recipes/add", name="add_new_recipe", methods={"POST"})
      */
-    public  function addRecipe (Request $request) {
+    public  function addRecipe (Request $request): Response
+    {
 
 
         $entityManager = $this->getDoctrine()->getManager();
@@ -24,7 +26,7 @@ class RecipesController extends AbstractController
         $newRecipe->setName($data["name"]);
         $newRecipe->setRecipeCategory($data["recipeCategory"]);
         $newRecipe->setNiceToKnow($data["niceToKnow"]);
-       // $newRecipe->setRecipeIngredient($data["recipeIngredient"]);
+        $newRecipe->setRecipeIngredient($data["recipeIngredient"]);
         $newRecipe->setRecipeInstructions($data["recipeInstructions"]);
         $entityManager->persist($newRecipe);
         $entityManager->flush();
@@ -51,7 +53,7 @@ class RecipesController extends AbstractController
         return $this->json($response);
     }
 
-    #[Route('/recipes', name: 'recipes')]
+    /*#[Route('/recipes', name: 'recipes')]
     public function index(): Response
     {
 
@@ -59,5 +61,5 @@ class RecipesController extends AbstractController
             'message' => 'Welcome to your new controller!',
             'path' => 'src/Controller/RecipesController.php',
         ]);
-    }
+    }*/
 }

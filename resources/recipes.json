@@ -1,5 +1,5 @@
 {
-  "recepies": [
+  "recipes": [
     {
       "id": 1,
       "name": "Hiivaleipä",
@@ -114,44 +114,6 @@
         }
       ],
       "recipeInstructions": "Vatkaa voi ja sokeri ja lisää munat. Sekoita jauhot keskenään ja sotke edellisten joukkoon. Leivotaan tanko joka levitettään haarukalla, päälle sokeria. Paisto 200C 8min. Paloitellaan kuumana. "
-    },
-    {
-      "name": "pulla",
-      "recipeCategory": "leivonnainen",
-      "niceToKnow": "laura",
-      "recipeIngredient": [
-        {
-          "id": 1,
-          "recipeIngredient": "1dl velttä"
-        },
-        {
-          "id": 2,
-          "recipeIngredient": "2dl kärsimystä"
-        },
-        {
-          "id": 3,
-          "recipeIngredient": "2dl jauhoa"
-        }
-      ],
-      "recipeInstructions": "paista",
-      "id": 4
-    },
-    {
-      "name": "Toskakakku",
-      "recipeCategory": "leivonnainen",
-      "niceToKnow": "taata",
-      "recipeIngredient": [
-        {
-          "id": 1,
-          "recipeIngredient": "1dl mantelilastuja"
-        },
-        {
-          "id": 2,
-          "recipeIngredient": "2dl jauhoa"
-        }
-      ],
-      "recipeInstructions": "kjhkjhkjhkj",
-      "id": 5
     }
   ]
 }
