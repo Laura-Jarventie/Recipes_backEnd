@@ -21,18 +21,18 @@ class RecipesController extends AbstractController
 
 
         $entityManager = $this->getDoctrine()->getManager();
-        //$data=json_decode($request->getContent(), true);
+        $data=json_decode($request->getContent(), true);
         $newRecipe = new Recipes();
-        //$newRecipe->setName($data["name"]);
-        $newRecipe->setName(name:'omelett');
-        //$newRecipe->setRecipeCategory($data["recipeCategory"]);
-        $newRecipe->setRecipeCategory("leivonnanine");
-        //$newRecipe->setNiceToKnow($data["niceToKnow"]);
-        $newRecipe->setNiceToKnow("Taata");
-        //$newRecipe->setRecipeIngredient($data["recipeIngredient"]);
-        $newRecipe->setRecipeIngredient(["egg"]);
-        //$newRecipe->setRecipeInstructions($data["recipeInstructions"]);
-        $newRecipe->setRecipeInstructions("sotke");
+        $newRecipe->setName($data["name"]);
+        //$newRecipe->setName(name:'omelett');
+        $newRecipe->setRecipeCategory($data["recipeCategory"]);
+        //$newRecipe->setRecipeCategory("leivonnanine");
+        $newRecipe->setNiceToKnow($data["niceToKnow"]);
+        //$newRecipe->setNiceToKnow("Taata");
+        $newRecipe->setRecipeIngredient($data["recipeIngredient"]);
+        //$newRecipe->setRecipeIngredient(["egg"]);
+        $newRecipe->setRecipeInstructions($data["recipeInstructions"]);
+        //$newRecipe->setRecipeInstructions("sotke");
         $entityManager->persist($newRecipe);
         $entityManager->flush();
         return new Response('Trying to add new recipe...' . $newRecipe->getId());
@@ -65,22 +65,24 @@ class RecipesController extends AbstractController
     public function findRecipe($id) {
         $recipes = $this->getDoctrine()->getRepository(Recipes::class)->find($id);
 
+        $response = [];
+
         if (!$recipes) {
             throw $this->createNotFoundException(
                 'No recipe was found with the id: ' . $id
             );
         } else {
-            return $this->json([
+            return $this->json(
+                $response[] = array(
                 'id' => $recipes->getId(),
                 'name' => $recipes->getName(),
                 'recipeCategory' => $recipes->getRecipeCategory(),
                 'niceToKnow' => $recipes->getNiceToKnow(),
                 'recipeIngredient' => $recipes->getRecipeIngredient(),
                 'recipeInstructions' => $recipes->getRecipeInstructions()
-            ]);
+                )
+            );
         }
     }
-
-
 
 }
