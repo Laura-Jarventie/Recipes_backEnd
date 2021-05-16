@@ -14,20 +14,25 @@ class RecipesController extends AbstractController
 
 {
     /**
-     * @Route("/recipes/add", name="add_new_recipe", methods={"POST"})
+     * @Route("/recipes/add", name="add_new_recipe", methods={"GET","POST"})
      */
-    public  function addRecipe (Request $request): Response
+    public  function addRecipe (Request $request)
     {
 
 
         $entityManager = $this->getDoctrine()->getManager();
-        $data=json_decode($request->getContent(), true);
+        //$data=json_decode($request->getContent(), true);
         $newRecipe = new Recipes();
-        $newRecipe->setName($data["name"]);
-        $newRecipe->setRecipeCategory($data["recipeCategory"]);
-        $newRecipe->setNiceToKnow($data["niceToKnow"]);
-        $newRecipe->setRecipeIngredient($data["recipeIngredient"]);
-        $newRecipe->setRecipeInstructions($data["recipeInstructions"]);
+        //$newRecipe->setName($data["name"]);
+        $newRecipe->setName(name:'omelett');
+        //$newRecipe->setRecipeCategory($data["recipeCategory"]);
+        $newRecipe->setRecipeCategory("leivonnanine");
+        //$newRecipe->setNiceToKnow($data["niceToKnow"]);
+        $newRecipe->setNiceToKnow("Taata");
+        //$newRecipe->setRecipeIngredient($data["recipeIngredient"]);
+        $newRecipe->setRecipeIngredient(["egg"]);
+        //$newRecipe->setRecipeInstructions($data["recipeInstructions"]);
+        $newRecipe->setRecipeInstructions("sotke");
         $entityManager->persist($newRecipe);
         $entityManager->flush();
         return new Response('Trying to add new recipe...' . $newRecipe->getId());
@@ -45,13 +50,15 @@ class RecipesController extends AbstractController
                 'id' => $recipe->getId(),
                 'name' => $recipe->getName(),
                 'recipeCategory' => $recipe->getRecipeCategory(),
-                'niceToKnow' => $recipe->getRecipeNiceToKnow(),
+                'niceToKnow' => $recipe->getNiceToKnow(),
                 'recipeIngredient' => $recipe->getRecipeIngredient(),
                 'recipeInstructions' => $recipe->getRecipeInstructions()
             );
         }
         return $this->json($response);
     }
+
+
 
     /*#[Route('/recipes', name: 'recipes')]
     public function index(): Response
