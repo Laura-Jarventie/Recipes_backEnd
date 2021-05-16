@@ -58,15 +58,29 @@ class RecipesController extends AbstractController
         return $this->json($response);
     }
 
+    /**
+     * @Route("/recipes/find/{id}", name="find_a_recipe")
+     */
+
+    public function findRecipe($id) {
+        $recipes = $this->getDoctrine()->getRepository(Recipes::class)->find($id);
+
+        if (!$recipes) {
+            throw $this->createNotFoundException(
+                'No recipe was found with the id: ' . $id
+            );
+        } else {
+            return $this->json([
+                'id' => $recipes->getId(),
+                'name' => $recipes->getName(),
+                'recipeCategory' => $recipes->getRecipeCategory(),
+                'niceToKnow' => $recipes->getNiceToKnow(),
+                'recipeIngredient' => $recipes->getRecipeIngredient(),
+                'recipeInstructions' => $recipes->getRecipeInstructions()
+            ]);
+        }
+    }
 
 
-    /*#[Route('/recipes', name: 'recipes')]
-    public function index(): Response
-    {
 
-        return $this->json([
-            'message' => 'Welcome to your new controller!',
-            'path' => 'src/Controller/RecipesController.php',
-        ]);
-    }*/
 }
