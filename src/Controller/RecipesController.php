@@ -87,7 +87,7 @@ class RecipesController extends AbstractController
     /**
      * @Route("/recipes/remove/{id}", name="remove_a_recipe" methods={"GET","POST"})
      */
-    public function removeRecipe($id)
+    public function removeRecipe($id): JsonResponse
     {
         $entityManager = $this->getDoctrine()->getManager();
         $recipe = $this->getDoctrine()->getRepository(Recipe::class)->find($id);
