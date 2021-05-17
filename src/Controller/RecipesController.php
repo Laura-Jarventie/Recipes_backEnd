@@ -18,8 +18,6 @@ class RecipesController extends AbstractController
      */
     public  function addRecipe (Request $request)
     {
-
-
         $entityManager = $this->getDoctrine()->getManager();
         $data=json_decode($request->getContent(), true);
         $newRecipe = new Recipes();
@@ -38,6 +36,7 @@ class RecipesController extends AbstractController
         return new Response('Trying to add new recipe...' . $newRecipe->getId());
 
     }
+
     /**
      * @Route("/recipes/all", name="get_all_recipe", methods={"GET"})
      */
@@ -84,5 +83,26 @@ class RecipesController extends AbstractController
             );
         }
     }
+
+    /**
+     * @Route("/recipes/remove/{id}", name="remove_a_recipe" methods={"GET","POST"})
+     */
+    public function removeRecipe($id)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $recipe = $this->getDoctrine()->getRepository(Recipe::class)->find($id);
+        if (!$recipe) {
+            throw $this->createNotFoundException(
+                'No recipe found with this id' . $id
+            );
+        } else {
+            $entityManager->remove($recipe);
+            $entityManager->flush();
+            return $this->json([
+                'message' => 'Removed recipe with id ' . $id
+            ]);
+        }
+    }
+
 
 }
