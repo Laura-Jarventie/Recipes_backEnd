@@ -84,8 +84,28 @@ class RecipesController extends AbstractController
         }
     }
 
+   // /**
+   //  * @Route ("/recipe/remove/{id}, name="remove_a_recipe")
+   //  */
 
+    //public function removeRecipe($id)
+    //{
+    // $entityManager = $this->getDoctrine()->getManager();
+    //  $recipe = $this->getDoctrine()->getRepository(Recipe::class)->find($id);
 
+    //   if (!$recipe) {
+    //     throw $this->createNotFoundException(
+    //        'No recipe found with this id' . $id
+    //      );
+    //  } else {
+    //       $entityManager->remove($recipe);
+    //       $entityManager->flush();
+//
+    //        return $this->json([
+    //           'message' => 'Removed recipe with id' .$id
+    //       ]);
+    //   }
+    //}
 
 
 }
