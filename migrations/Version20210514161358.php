@@ -20,8 +20,8 @@ final class Version20210514161358 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE TABLE recipes (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name VARCHAR(255) NOT NULL, recipe_category VARCHAR(255) NOT NULL, nice_to_know VARCHAR(255) DEFAULT NULL, recipe_ingredient CLOB NOT NULL --(DC2Type:array)
-        , recipe_instructions VARCHAR(255) NOT NULL)');
+        $this->addSql('CREATE TABLE recipes (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name VARCHAR(255) NOT NULL, recipe_category VARCHAR(255) NOT NULL, nice_to_know VARCHAR(255) NOT NULL, recipe_ingredient CLOB NOT NULL --(DC2Type:array)
+        , recipe_instructions VARCHAR(500) NOT NULL)');
     }
 
     public function down(Schema $schema): void
